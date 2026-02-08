@@ -1,82 +1,131 @@
+/* ========================= */
 /* RESET */
+/* ========================= */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+/* ========================= */
 /* FONDO */
+/* ========================= */
 body {
-    margin: 0;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* TARJETA */
+/* ========================= */
+/* GIRASOLES CON MÁS COLOR */
+/* ========================= */
+body::before,
+body::after {
+    content: "🌻";
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.55; /* 🔥 MÁS PRESENCIA */
+    pointer-events: none;
+
+    /* 🔥 COLOR Y VIDA */
+    filter:
+        saturate(1.6)
+        brightness(1.15)
+        drop-shadow(0 12px 20px rgba(255, 190, 0, 0.45));
+}
+
+body::before {
+    top: -30px;
+    left: -30px;
+    transform: rotate(-18deg);
+}
+
+body::after {
+    bottom: -40px;
+    right: -30px;
+    transform: rotate(14deg);
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
 .card {
-    background: white;
-    padding: 25px 50px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    animation: fadeIn 2s ease;
+    background: rgba(255, 255, 255, 0.97);
     width: 100%;
     max-width: 420px;
+    padding: 30px 24px 32px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+    animation: fadeIn 1.2s ease;
+    position: relative;
+    z-index: 2;
 }
 
-/* SLIDER */
+/* ========================= */
+/* FOTO / SLIDER */
+/* ========================= */
 .photo {
     width: 300px;
     height: 300px;
-    margin: 0 auto 25px;
+    margin: 0 auto 18px;
     border-radius: 30%;
     border: 6px solid #ff4d6d;
     overflow: hidden;
 }
 
-/* CONTENEDOR DE IMÁGENES */
 .slides {
     display: flex;
-    width: 300%;              /* 3 imágenes */
-    animation: slide 7s ease-in-out infinite;
+    width: 300%;
+    height: 100%;
+    animation: slide 8s infinite;
 }
 
-/* IMÁGENES */
 .slides img {
     width: 300px;
     height: 300px;
-    flex-shrink: 0;
     object-fit: cover;
     object-position: 50% 30%;
-    display: block;
+    flex-shrink: 0;
 }
 
+/* ========================= */
 /* TEXTO */
+/* ========================= */
 h1 {
+    font-size: 2rem;
     color: #ff4d6d;
-    font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
 .message {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     color: #333;
-    margin: 10px 0;
+    margin-bottom: 10px;
+    line-height: 1.45;
 }
 
 .message.small {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: #555;
 }
 
 .date {
-    font-size: 1rem;
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
     color: #777;
 }
 
-/* ANIMACIÓN DE ENTRADA */
+/* ========================= */
+/* ANIMACIONES */
+/* ========================= */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -88,30 +137,68 @@ h1 {
     }
 }
 
-/* SLIDER AUTOMÁTICO INFINITO */
 @keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(0);
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(0); }
+
+    40%  { transform: translateX(-300px); }
+    65%  { transform: translateX(-300px); }
+
+    75%  { transform: translateX(-600px); }
+    95%  { transform: translateX(-600px); }
+
+    100% { transform: translateX(0); }
+}
+
+/* ========================= */
+/* 📱 MÓVIL */
+/* ========================= */
+@media (max-width: 480px) {
+
+    body::before,
+    body::after {
+        font-size: 130px;
+        opacity: 0.6;
+        filter:
+            saturate(1.6)
+            brightness(1.2)
+            drop-shadow(0 10px 16px rgba(255, 190, 0, 0.5));
     }
 
-    35% {
-        transform: translateX(-300px);
-    }
-    60% {
-        transform: translateX(-300px);
-    }
-
-    70% {
-        transform: translateX(-600px);
-    }
-    95% {
-        transform: translateX(-600px);
+    .photo {
+        width: 220px;
+        height: 220px;
+        border-width: 5px;
+        border-radius: 25%;
     }
 
-    100% {
-        transform: translateX(0); /* 🔥 vuelve al inicio */
+    .slides img {
+        width: 220px;
+        height: 220px;
+    }
+
+    h1 {
+        font-size: 1.85rem;
+    }
+
+    .message {
+        font-size: 1rem;
+    }
+
+    .message.small {
+        font-size: 0.95rem;
+    }
+
+    @keyframes slide {
+        0%   { transform: translateX(0); }
+        30%  { transform: translateX(0); }
+
+        40%  { transform: translateX(-220px); }
+        65%  { transform: translateX(-220px); }
+
+        75%  { transform: translateX(-440px); }
+        95%  { transform: translateX(-440px); }
+
+        100% { transform: translateX(0); }
     }
 }
