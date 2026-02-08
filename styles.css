@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: #00eaff;
+    font-size: 4rem;
+}
+
+
