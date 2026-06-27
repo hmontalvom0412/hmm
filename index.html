@@ -5,58 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🌻 Hellen</title>
 
-<style>
-/* ===== RESET ===== */
-* {
+<style>* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
 
-/* ===== CENTRADO ===== */
 body {
-  background: linear-gradient(135deg, #f5f5f5, #fff8e1);
+  background: radial-gradient(circle at top, #fff8e1, #f5f5f5);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-/* ===== CARD ===== */
+/* ===== CARD MÁS MODERNA ===== */
 .card {
   width: 90%;
   max-width: 900px;
-  background: #fff;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  backdrop-filter: blur(6px);
 }
 
-/* ===== GIRASOLES ===== */
+/* ===== GIRASOLES MÁS GRANDES Y ANIMADOS ===== */
 .sunflower {
-  font-size: 28px;
+  font-size: 45px;   /* 👈 MÁS GRANDE */
   display: inline-block;
-  margin: 0 5px;
+  margin: 0 8px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* animación suave */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 /* ===== TITULO ===== */
 h1 {
   color: #d89b00;
   margin-bottom: 15px;
+  font-size: 32px;
 }
 
-/* ===== MENSAJE ===== */
+/* ===== TEXTO ===== */
 #message h2 {
   color: #222;
   margin-bottom: 10px;
 }
 
 #message p {
-  color: #555;
+  color: #666;
 }
 
 /* ===== PROGRESS ===== */
@@ -77,43 +81,41 @@ h1 {
   transition: width 0.2s linear;
 }
 
-/* ===== BOTÓN ===== */
+/* ===== BOTÓN MÁS PRO ===== */
 button {
   background: linear-gradient(90deg, #f7c600, #ffb300);
   border: none;
-  padding: 12px 22px;
-  border-radius: 12px;
+  padding: 12px 24px;
+  border-radius: 14px;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s;
   margin-top: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 button:hover {
   transform: scale(1.05);
 }
-/* ===== SLIDER ===== */
+
+/* ===== SLIDER MÁS ELEGANTE ===== */
 .slider {
   width: 100%;
-  height: 360px;
+  height: 380px;
   margin-top: 20px;
   position: relative;
   overflow: hidden;
-  border-radius: 14px;
-  background: #111; /* fondo para cuando haya espacios */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 18px;
+  background: #111;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
 }
 
 /* IMÁGENES */
 .slide {
-  max-width: 100%;
-  max-height: 100%;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 👈 CLAVE: se adapta sin recortar */
+  object-fit: contain;
   position: absolute;
   top: 0;
   left: 0;
@@ -129,11 +131,15 @@ button:hover {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .slider {
-    height: 220px;
+    height: 240px;
   }
 
   h1 {
-    font-size: 20px;
+    font-size: 22px;
+  }
+
+  .sunflower {
+    font-size: 34px;
   }
 }
 </style>
@@ -149,15 +155,15 @@ button:hover {
   <h1>Hellen ✨</h1>
 
   <div id="message">
-    <h2>¿Lista para descubrir algo?</h2>
-    <p>Presiona el botón y deja que el sistema haga su trabajo...</p>
+    <h2>¿Lista para sorprenderte una vez más?</h2>
+    
   </div>
 
   <div class="progress">
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <button onclick="nextMessage()">Iniciar análisis 🌻</button>
+  <button onclick="nextMessage()">Ver recuerdos juntos 🌻</button>
 
 </div>
 
@@ -182,7 +188,7 @@ function nextMessage() {
     { p: 10, t: "🌻 Buscando recuerdos..." },
     { p: 25, t: "😊 Analizando conversaciones..." },
     { p: 45, t: "😂 Contando risas compartidas..." },
-    { p: 65, t: "👀 Detectando momentos especiales..." },
+    { p: 65, t: "👀 Detectando ojitos chinos..." },
     { p: 82, t: "💛 Buscando algo único..." },
     { p: 96, t: "✨ Preparando el resultado..." }
   ];
@@ -217,7 +223,8 @@ function nextMessage() {
             <img src="img/part4.jpeg" class="slide">
           </div>
 
-          <p style="margin-top:15px;">🌻 Creo que encontré mis imágenes favoritas...</p>
+          <p style="margin-top:15px;">🌻 Creo que encontré mis imágenes favoritas, traes loco a este humilde programador...,
+            Tom💛</p>
         `;
 
         iniciarCarrusel();
