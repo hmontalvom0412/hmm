@@ -1,180 +1,241 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌻Hellen, mi topo</title>
+<title>🌻 Hellen</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-body{
-    background: linear-gradient(135deg,#fff8dc,#ffe89a);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
+/* ===== CENTRADO ===== */
+body {
+  background: linear-gradient(135deg, #f5f5f5, #fff8e1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.card{
-    background:white;
-    width:90%;
-    max-width:500px;
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-    position:relative;
+/* ===== CARD ===== */
+.card {
+  width: 90%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.sunflower{
-    position:absolute;
-    font-size:25px;
-    animation:float 4s ease-in-out infinite;
+/* ===== GIRASOLES ===== */
+.sunflower {
+  font-size: 28px;
+  display: inline-block;
+  margin: 0 5px;
 }
 
-.sunflower:nth-child(1){
-    top:-15px;
-    left:20px;
+/* ===== TITULO ===== */
+h1 {
+  color: #d89b00;
+  margin-bottom: 15px;
 }
 
-.sunflower:nth-child(2){
-    top:-10px;
-    right:20px;
+/* ===== MENSAJE ===== */
+#message h2 {
+  color: #222;
+  margin-bottom: 10px;
 }
 
-@keyframes float{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-10px);
-    }
+#message p {
+  color: #555;
 }
 
-h1{
-    color:#d89b00;
-    margin-bottom:20px;
+/* ===== PROGRESS ===== */
+.progress {
+  width: 100%;
+  height: 14px;
+  background: #eee;
+  border-radius: 30px;
+  overflow: hidden;
+  margin: 20px 0;
+  display: none;
 }
 
-#message{
-    min-height:120px;
-    line-height:1.8;
-    color:#555;
-    font-size:1.05rem;
-    transition:.3s;
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f7c600, #ff9800);
+  transition: width 0.2s linear;
 }
 
-button{
-    margin-top:20px;
-    border:none;
-    background:#ffd54f;
-    color:#333;
-    padding:12px 24px;
-    border-radius:30px;
-    cursor:pointer;
-    font-size:1rem;
-    font-weight:bold;
-    transition:.3s;
+/* ===== BOTÓN ===== */
+button {
+  background: linear-gradient(90deg, #f7c600, #ffb300);
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  margin-top: 10px;
 }
 
-button:hover{
-    transform:scale(1.05);
+button:hover {
+  transform: scale(1.05);
+}
+/* ===== SLIDER ===== */
+.slider {
+  width: 100%;
+  height: 360px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #111; /* fondo para cuando haya espacios */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.final{
-    color:#444;
-    animation:fadeIn 1s ease;
+/* IMÁGENES */
+.slide {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 👈 CLAVE: se adapta sin recortar */
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+/* ACTIVA */
+.slide.active {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .slider {
+    height: 220px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="card">
 
-```
-<div class="sunflower">🌻</div>
-<div class="sunflower">🌻</div>
+  <div class="sunflower">🌻</div>
+  <div class="sunflower">🌻</div>
 
-<h1>Hellen ✨</h1>
+  <h1>Hellen ✨</h1>
 
-<p id="message">
-    Hoy quise hacer algo para ti...
-</p>
+  <div id="message">
+    <h2>¿Lista para descubrir algo?</h2>
+    <p>Presiona el botón y deja que el sistema haga su trabajo...</p>
+  </div>
 
-<button onclick="nextMessage()">
-    Haz clic si tienes curiosidad 👀
-</button>
-```
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <button onclick="nextMessage()">Iniciar análisis 🌻</button>
 
 </div>
 
 <script>
+let iniciado = false;
 
-let step = 0;
+function nextMessage() {
+  if (iniciado) return;
+  iniciado = true;
 
-function nextMessage(){
+  const msg = document.getElementById("message");
+  const btn = document.querySelector("button");
+  const bar = document.getElementById("progressBar");
+  const prog = document.querySelector(".progress");
 
-    const msg = document.getElementById("message");
-    const btn = document.querySelector("button");
+  btn.style.display = "none";
+  prog.style.display = "block";
 
-    step++;
+  let p = 0;
 
-    if(step === 1){
-        msg.innerHTML = "Todavía no 😌";
-    }
+  const estados = [
+    { p: 10, t: "🌻 Buscando recuerdos..." },
+    { p: 25, t: "😊 Analizando conversaciones..." },
+    { p: 45, t: "😂 Contando risas compartidas..." },
+    { p: 65, t: "👀 Detectando momentos especiales..." },
+    { p: 82, t: "💛 Buscando algo único..." },
+    { p: 96, t: "✨ Preparando el resultado..." }
+  ];
 
-    else if(step === 2){
-        msg.innerHTML = "¿Segura que quieres verlo? 👀";
-    }
+  const i = setInterval(() => {
+    p++;
+    bar.style.width = p + "%";
 
-    else if(step === 3){
-        msg.innerHTML = "Bueno... está bien 🌻";
-    }
+    let txt = "Iniciando análisis...";
+    estados.forEach(e => {
+      if (p >= e.p) txt = e.t;
+    });
 
-    else{
+    msg.innerHTML = `<h2>${p}%</h2><p>${txt}</p>`;
+
+    if (p >= 100) {
+      clearInterval(i);
+
+      setTimeout(() => {
         msg.innerHTML = `
-     Bueno si llegaste hasta aquí,
-significa que tu curiosidad volvió a ganar como siempre jajaja.
+          <h2>100% ✔</h2>
+          <p>Resultado encontrado...</p>
 
-La verdad, no escondí ningún gran secreto.
+          <div class="slider">
+            <img src="img/hmmhcg.png" class="slide active">
+            <img src="img/part1.jpeg" class="slide">
+            <img src="img/img4.png" class="slide">
+            <img src="img/part2.jpeg" class="slide">
+            <img src="img/img3.png" class="slide">
+            <img src="img/part3.jpeg" class="slide">
+            <img src="img/img4.png" class="slide">
+            <img src="img/part4.jpeg" class="slide">
+          </div>
 
-Solo quería aprovechar este rincón de internet para decirte algo:
-
-Me encantas mucho,
-me gusta pasar tiempo contigo
-y sobre todo siempre es agradable encontrarte y mirar esos ojos chinitos que tienes.
-
-✨
-
-— Tom
-
+          <p style="margin-top:15px;">🌻 Creo que encontré mis imágenes favoritas...</p>
         `;
 
-        btn.style.display = "none";
+        iniciarCarrusel();
+      }, 600);
     }
+  }, 40);
 }
 
+function iniciarCarrusel() {
+  const slides = document.querySelectorAll(".slide");
+  let a = 0;
+
+  setInterval(() => {
+    slides[a].classList.remove("active");
+    a = (a + 1) % slides.length;
+    slides[a].classList.add("active");
+  }, 2500);
+}
 </script>
 
 </body>
